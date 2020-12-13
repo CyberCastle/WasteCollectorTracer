@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "cl.cc"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "WasteCollectorTracer",
+    "packageName": "cl.cc",
+    "packageFolder": "cl/cc",
+    "serverPort": "8080",
+    "authenticationType": "session",
+    "cacheProvider": "caffeine",
+    "enableHibernateCache": true,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "rememberMeKey": "4bfc01df5af907a7fdaca6b72f40075a4b4586a02a2b1986db8b74554c687acc493864245f9e13e664627f906dba3d4a0fd4",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "superhero",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1607899820826,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
