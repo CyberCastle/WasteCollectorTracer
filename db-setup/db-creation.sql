@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS wastertracer;
+CREATE DATABASE wastertracer;
+CREATE USER wastertracer WITH ENCRYPTED PASSWORD '7wAst3r.trac3r7';
+GRANT ALL PRIVILEGES ON DATABASE wastertracer TO wastertracer;
