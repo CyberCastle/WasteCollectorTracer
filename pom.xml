@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cl.cc</groupId>
@@ -860,13 +859,12 @@
                 <profile.tls>,tls</profile.tls>
             </properties>
         </profile>
-        <profile>
+        <!-- <profile>
             <id>webpack</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <dependencies>
-            </dependencies>
+            <dependencies></dependencies>
             <build>
                 <plugins>
                     <plugin>
@@ -908,10 +906,10 @@
                 </plugins>
             </build>
             <properties>
-                <!-- default Spring profiles -->
+                !- - default Spring profiles - ->
                 <spring.profiles.active>dev${profile.no-liquibase}</spring.profiles.active>
             </properties>
-        </profile>
+        </profile> -->
         <profile>
             <id>dev</id>
             <activation>
@@ -1098,7 +1096,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore/>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                         <pluginExecution>
@@ -1112,7 +1110,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore/>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
