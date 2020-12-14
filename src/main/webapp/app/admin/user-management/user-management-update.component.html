@@ -1,36 +1,30 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="myUserLabel">
-                Create or edit a User
-            </h2>
+            <h2 id="myUserLabel">Create or edit a User</h2>
 
             <div *ngIf="user">
                 <jhi-alert-error></jhi-alert-error>
 
                 <div class="form-group" [hidden]="!user.id">
                     <label>ID</label>
-                    <input type="text" class="form-control" name="id" formControlName="id" readonly>
+                    <input type="text" class="form-control" name="id" formControlName="id" readonly />
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label">Login</label>
-                    <input type="text" class="form-control" name="login"
-                           formControlName="login">
+                    <input type="text" class="form-control" name="login" formControlName="login" />
 
                     <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('login')?.errors?.required">
+                        <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.required">
                             This field is required.
                         </small>
 
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('login')?.errors?.maxlength">
+                        <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.maxlength">
                             This field cannot be longer than 50 characters.
                         </small>
 
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('login')?.errors?.pattern">
+                        <small class="form-text text-danger" *ngIf="editForm.get('login')?.errors?.pattern">
                             This field can only contain letters, digits and e-mail addresses.
                         </small>
                     </div>
@@ -38,12 +32,14 @@
 
                 <div class="form-group">
                     <label class="form-control-label">First Name</label>
-                    <input type="text" class="form-control" name="firstName"
-                           formControlName="firstName">
+                    <input type="text" class="form-control" name="firstName" formControlName="firstName" />
 
-                    <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('firstName')?.errors?.maxlength">
+                    <div
+                        *ngIf="
+                            editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)
+                        "
+                    >
+                        <small class="form-text text-danger" *ngIf="editForm.get('firstName')?.errors?.maxlength">
                             This field cannot be longer than 50 characters.
                         </small>
                     </div>
@@ -51,12 +47,12 @@
 
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" name="lastName"
-                           formControlName="lastName">
+                    <input type="text" class="form-control" name="lastName" formControlName="lastName" />
 
-                    <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('lastName')?.errors?.maxlength">
+                    <div
+                        *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)"
+                    >
+                        <small class="form-text text-danger" *ngIf="editForm.get('lastName')?.errors?.maxlength">
                             This field cannot be longer than 50 characters.
                         </small>
                     </div>
@@ -64,35 +60,56 @@
 
                 <div class="form-group">
                     <label class="form-control-label">Email</label>
-                    <input type="email" class="form-control" name="email" formControlName="email">
+                    <input type="email" class="form-control" name="email" formControlName="email" />
 
                     <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.required">
+                        <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required">
                             This field is required.
                         </small>
 
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.maxlength">
+                        <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.maxlength">
                             This field cannot be longer than 100 characters.
                         </small>
 
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.minlength">
+                        <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.minlength">
                             This field is required to be at least 5 characters.
                         </small>
 
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('email')?.errors?.email">
-                            Your email is invalid.
+                        <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.email"> Your email is invalid. </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" formControlName="password" />
+
+                    <div
+                        *ngIf="editForm.get('password')!.invalid && (editForm.get('password')!.dirty || editForm.get('password')!.touched)"
+                    >
+                        <small class="form-text text-danger" *ngIf="editForm.get('password')?.errors?.required">
+                            Your password is required.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('password')?.errors?.minlength">
+                            Your password is required to be at least 4 characters.
+                        </small>
+
+                        <small class="form-text text-danger" *ngIf="editForm.get('password')?.errors?.maxlength">
+                            Your password cannot be longer than 50 characters.
                         </small>
                     </div>
                 </div>
 
-                <div class="form-check">
-                    <label class="form-check-label" for="activated">
-                        <input class="form-check-input" [attr.disabled]="user.id === undefined ? 'disabled' : null"
-                               type="checkbox" id="activated" name="activated" formControlName="activated">
+                <div class="form-group">
+                    <label class="form-control-labe" for="activated">
+                        <input
+                            class="form-control"
+                            [attr.disabled]="user.id === undefined ? 'disabled' : null"
+                            type="checkbox"
+                            id="activated"
+                            name="activated"
+                            formControlName="activated"
+                        />
                         <span>Activated</span>
                     </label>
                 </div>

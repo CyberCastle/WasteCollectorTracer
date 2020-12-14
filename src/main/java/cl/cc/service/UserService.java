@@ -1,16 +1,14 @@
 package cl.cc.service;
 
-import cl.cc.config.Constants;
-import cl.cc.domain.Authority;
-import cl.cc.domain.User;
-import cl.cc.repository.AuthorityRepository;
-import cl.cc.repository.PersistentTokenRepository;
-import cl.cc.repository.UserRepository;
-import cl.cc.security.AuthoritiesConstants;
-import cl.cc.security.SecurityUtils;
-import cl.cc.service.dto.UserDTO;
-
-import io.github.jhipster.security.RandomUtil;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +20,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import cl.cc.config.Constants;
+import cl.cc.domain.Authority;
+import cl.cc.domain.User;
+import cl.cc.repository.AuthorityRepository;
+import cl.cc.repository.PersistentTokenRepository;
+import cl.cc.repository.UserRepository;
+import cl.cc.security.AuthoritiesConstants;
+import cl.cc.security.SecurityUtils;
+import cl.cc.service.dto.UserDTO;
+import io.github.jhipster.security.RandomUtil;
 
 /**
  * Service class for managing users.
@@ -140,7 +143,7 @@ public class UserService {
         return true;
     }
 
-    public User createUser(UserDTO userDTO) {
+    public User createUser(UserDTO userDTO, String password) {
         User user = new User();
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
@@ -154,10 +157,12 @@ public class UserService {
         } else {
             user.setLangKey(userDTO.getLangKey());
         }
-        String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
-        user.setPassword(encryptedPassword);
-        user.setResetKey(RandomUtil.generateResetKey());
-        user.setResetDate(Instant.now());
+
+        if(password != null && !password.isEmpty()) {
+            String encryptedPassword = passwordEncoder.encode(password);
+            user.setPassword(encryptedPassword);
+        }
+
         user.setActivated(true);
         if (userDTO.getAuthorities() != null) {
             Set<Authority> authorities = userDTO.getAuthorities().stream()
@@ -179,7 +184,7 @@ public class UserService {
      * @param userDTO user to update.
      * @return updated user.
      */
-    public Optional<UserDTO> updateUser(UserDTO userDTO) {
+    public Optional<UserDTO> updateUser(UserDTO userDTO, String password) {
         return Optional.of(userRepository
             .findById(userDTO.getId()))
             .filter(Optional::isPresent)
@@ -193,6 +198,12 @@ public class UserService {
                     user.setEmail(userDTO.getEmail().toLowerCase());
                 }
                 user.setImageUrl(userDTO.getImageUrl());
+
+                if(password != null && !password.isEmpty()) {
+                    String encryptedPassword = passwordEncoder.encode(password);
+                    user.setPassword(encryptedPassword);
+                }
+
                 user.setActivated(userDTO.isActivated());
                 user.setLangKey(userDTO.getLangKey());
                 Set<Authority> managedAuthorities = user.getAuthorities();
